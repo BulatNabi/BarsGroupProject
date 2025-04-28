@@ -10,8 +10,8 @@
 
 1.  **Клонируйте репозиторий (если применимо):**
     ```bash
-    git clone https://github.com/BulatNabi/BarsGroupProject-test.git
-    cd ./BarsGroupProject-test
+    https://github.com/BulatNabi/BarsGroupProject.git
+    cd ./BarsGroupProject
     ```
     *Если у вас просто файлы проекта с `docker-compose.yml`, перейдите в эту папку.*
 
