@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useMemo, useState} from 'react';
 import styles from './StatisticsPage.module.css';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,26 +10,16 @@ const StatisticsPage = () => {
     const { data: coursesData = [], isLoading, error } = useGetCoursesQuery();
     const { data: platformProgress = [], isLoading: platformLoading, error: platformError } = useGetPlatformProgressQuery();
 
-    const [stats] = useState({
-        totalUsers: 124,
-        totalCourses: 12,
-        completedCourses: 89,
-        topStudents: [
-            { name: "Иванов И.", completed: 8 },
-            { name: "Петров П.", completed: 7 },
-            { name: "Сидоров С.", completed: 6 },
-        ],
-        courseProgressData: [
-            { course: 'React', progress: 80 },
-            { course: 'JavaScript', progress: 65 },
-            { course: 'CSS', progress: 45 },
-        ],
-        courses: [
-            { name: "Основы React", id: 1 },
-            { name: "Основы JavaScript", id: 2 },
-            { name: "Основы CSS", id: 3 }
-        ]
-    });
+    const chartData = useMemo(() => {
+        const threeCourses = platformProgress?.threeCourses;
+        if (threeCourses && typeof threeCourses === 'object') {
+            return Object.entries(threeCourses).map(([courseName, progress]) => ({
+                course: courseName,
+                progress: progress
+            }));
+        }
+        return [];
+    }, [platformProgress]);
 
     const handleCourseClick = (courseId) => {
         navigate(`/teacher/mycourses/detail/${courseId}`);
@@ -55,15 +45,21 @@ const StatisticsPage = () => {
             </div>
 
             <div className={styles.chartSection}>
-                <h3 className={styles.sectionTitle}>📈 Процент прохождения курсов</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={stats.courseProgressData}>
-                        <XAxis dataKey="course" />
-                        <YAxis />
-                        <Tooltip />
-                        <Bar dataKey="progress" fill="#4f46e5" />
-                    </BarChart>
-                </ResponsiveContainer>
+                <h3 className={styles.sectionTitle}>📈 Процент прохождения / Статистика по 3 курсам</h3>
+                {platformLoading ? (
+                    <p>Загрузка данных для графика...</p>
+                ) : chartData.length > 0 ? (
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={chartData}>
+                            <XAxis dataKey="course" />
+                            <YAxis />
+                            <Tooltip />
+                            <Bar dataKey="progress" fill="#4f46e5" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                ) : (
+                    <p>Нет данных для отображения графика по курсам.</p>
+                )}
             </div>
 
             <div className={styles.topStudentsSection}>
