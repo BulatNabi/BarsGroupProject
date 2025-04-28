@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './TopNavbar.module.css';
 import { Link, useNavigate } from "react-router-dom";
 import logo from './logo.jpg';
-import profile from './Profile.jpg';
+import profile from './Profile.png';
 import { useGetUserInfoQuery } from "../../Redux/api/authApi.js";
 
 const TopNavbar = () => {
