@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './TopNavbar.module.css';
 import { Link, useNavigate } from "react-router-dom";
 import logo from './logo.jpg';
+import profile from './Profile.jpg';
 import { useGetUserInfoQuery } from "../../Redux/api/authApi.js";
 
 const TopNavbar = () => {
@@ -15,6 +16,7 @@ const TopNavbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    const profileImageSrc = userInfo?.profilePhotoKey || profile;
 
     return (
         <div className={`${styles.navbar} ${isMenuOpen ? styles.menuOpen : ''}`}>
@@ -57,7 +59,7 @@ const TopNavbar = () => {
 
                 <div className={styles.lastpart}>
                     <div className={styles.profileIconContainer} onClick={() => { navigate('/profile'); toggleMenu(); }}>
-                        <img src={userInfo.profilePhotoKey || "./user-svgrepo-com.svg"} className={styles.profileIcon} alt="User Icon" />
+                        <img src={profileImageSrc} className={styles.profileIcon} alt="User Icon" />
                     </div>
                 </div>
             </div>
