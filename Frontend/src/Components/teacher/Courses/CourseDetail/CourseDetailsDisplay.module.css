@@ -1,0 +1,137 @@
+.adminInfoSection {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.adminInfoSection h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 1em;
+}
+
+.adminInfoSection div {
+    display: flex;
+    flex-direction: column;
+}
+
+.adminInfoSection label {
+    margin-bottom: 3px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.adminInfoSection input[type="text"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95em;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.adminInfoSection input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.saveButton {
+    padding: 8px 15px;
+    font-size: 0.95em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #6f42c1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 8px;
+}
+
+.saveButton:hover {
+    background-color: #5a35a0;
+}
+
+.saveButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.adminInfoSection p {
+    font-size: 0.85em;
+    margin-top: 8px;
+}
+
+.deleteUserSection {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.deleteUserSection h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    /* Стили для заголовка */
+}
+
+.deleteUserSection div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.deleteUserSection label {
+    /* Стили для метки */
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555;
+}
+.managementSectionsRow {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.managementSectionsRow > div {
+    flex: 1;
+    min-width: 300px;
+    margin-top: 0;
+}
+
+.actionButtonsContainer {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.deleteUserSection input[type="text"] {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.actionButtonsContainer {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}

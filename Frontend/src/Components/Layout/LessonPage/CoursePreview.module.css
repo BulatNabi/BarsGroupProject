@@ -1,0 +1,154 @@
+.coursePreviewContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eef2ff;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    background-color: #f8faff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+.courseInfo {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.courseImageContainer {
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.courseImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px 12px 0 0;
+    object-fit: cover;
+}
+
+.courseName {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #3A0068;
+    text-align: center;
+}
+
+.courseDescription {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.enrollButton {
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    align-self: center;
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.20);
+}
+
+.enrollButton:hover {
+    background: linear-gradient(90deg, #7b24ca 0%, #4B0082 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.25);
+}
+
+.enrollButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.15);
+}
+
+.enrollButton:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .coursePreviewContainer {
+        flex-direction: column;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .courseInfo {
+        width: 100%;
+        min-width: 0;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .courseImageContainer {
+        width: 100%;
+    }
+
+    .courseImage {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .courseName {
+        font-size: 1.4em;
+        margin-bottom: 8px;
+    }
+
+    .courseDescription {
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+
+    .enrollButton {
+        align-self: center;
+        padding: 10px 20px;
+        font-size: 0.95em;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .coursePreviewContainer {
+        margin-top: 15%;
+        border-radius: 8px;
+    }
+
+    .courseInfo {
+        padding: 10px;
+    }
+
+    .courseName {
+        font-size: 1.2em;
+        margin-bottom: 6px;
+    }
+
+    .courseDescription {
+        font-size: 0.85em;
+        margin-bottom: 10px;
+    }
+
+    .enrollButton {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        border-radius: 5px;
+    }
+}

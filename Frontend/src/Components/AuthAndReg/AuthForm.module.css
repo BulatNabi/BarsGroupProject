@@ -1,0 +1,172 @@
+/* Добавь link тег для Poppins в HTML head */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Основной шрифт Inter */
+}
+
+.authContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Добавляем небольшой паддинг на случай маленьких экранов */
+    background: linear-gradient(135deg, #9e49ee 0%, #4B0082 100%);
+}
+
+.authForm {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Чуть сильнее тень */
+    width: 100%;
+    max-width: 450px; /* Немного увеличим максимальную ширину */
+    text-align: center;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.authForm h2 {
+    margin-bottom: 10px; /* Уменьшаем отступ после заголовка */
+    /* Цвет ближе к темному пурпурному из градиента */
+    color: #3A0068;
+    font-size: 2.4em; /* Чуть крупнее заголовок */
+    font-weight: 700;
+    letter-spacing: 0; /* Убираем отрицательный трекинг */
+    font-family: 'Poppins', sans-serif; /* Шрифт для заголовка */
+}
+
+.authForm p {
+    margin-bottom: 40px; /* Увеличиваем отступ после параграфа */
+    color: #4a5568;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.95em;
+    letter-spacing: 0;
+}
+
+.inputGroup input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fff;
+    color: #2d3748;
+    box-shadow: none;
+}
+
+.inputGroup input:focus {
+    border-color: #8A2BE2;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.15);
+    background: #fff;
+}
+
+.inputGroup input::placeholder {
+    color: #a0aec0;
+    opacity: 0.9;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 14px 15px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    margin-top: 20px;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.20);
+}
+
+.submitButton:hover {
+    background: linear-gradient(90deg, #7b24ca 0%, #4B0082 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.25);
+}
+
+.submitButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.15);
+}
+
+.switchForm {
+    margin-top: 30px;
+    font-size: 0.95em;
+    color: #4a5568;
+}
+
+.switchForm a {
+    color: #6A1A9F;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.switchForm a:hover {
+    text-decoration: underline;
+    color: #4B0082;
+}
+
+.error {
+    color: #c53030;
+    background-color: #fff5f5;
+    border: 1px solid #fed7d7;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 480px) {
+    .authForm {
+        padding: 30px 20px;
+        max-width: 95%;
+    }
+
+    .authForm h2 {
+        font-size: 2em;
+    }
+
+    .authForm p {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .inputGroup input,
+    .submitButton {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+
+    .switchForm {
+        font-size: 0.9em;
+    }
+}

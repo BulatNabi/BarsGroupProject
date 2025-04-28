@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid #8A2BE2;
+    box-sizing: border-box;
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.brand {
+    color: #3A0068;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 10px;
+}
+
+.logo {
+    height: 30px;
+    width: auto;
+    display: block;
+}
+
+.navLinks {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navLinkItem {
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.2s, border-bottom-color 0.2s;
+    font-family: 'Inter', sans-serif;
+    border-bottom: 2px solid transparent;
+}
+
+.navLinkItem:hover {
+    color: #8A2BE2;
+    border-bottom-color: #8A2BE2;
+}
+
+.authButtons {
+    margin-left: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logoutButton {
+    padding: 8px 15px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.10);
+    font-family: 'Inter', sans-serif;
+}
+
+.logoutButton:hover {
+    background: linear-gradient(90deg, #7b24ca 0%, #4B0082 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.15);
+}
+
+.logoutButton:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 5px rgba(138, 43, 226, 0.10);
+}
+
+.mobileMenuToggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #3A0068;
+    padding: 5px;
+    z-index: 1001;
+    margin-left: auto;
+}
+
+.navLinks.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    gap: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index: 999;
+    box-sizing: border-box;
+}
+
+.navLinks.open .navLinkItem {
+    padding: 10px 20px;
+    border-bottom: none;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .logoSection {
+        margin-right: 10px;
+    }
+
+    .navLinks {
+        display: none;
+    }
+
+    .mobileMenuToggle {
+        display: block;
+    }
+
+    .authButtons {
+        margin-left: 10px;
+        padding: 0 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 8px 10px;
+    }
+
+    .brand {
+        font-size: 1.3em;
+        margin-right: 5px;
+    }
+
+    .logo {
+        height: 25px;
+    }
+
+    .logoutButton {
+        padding: 6px 12px;
+        font-size: 0.9em;
+    }
+
+    .mobileMenuToggle {
+        font-size: 1.6em;
+        margin-left: auto;
+    }
+
+    .authButtons {
+        margin-left: 8px;
+        padding: 0 3px;
+    }
+
+    .navLinks.open .navLinkItem {
+        padding: 8px 15px;
+    }
+}

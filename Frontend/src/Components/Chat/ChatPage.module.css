@@ -1,0 +1,31 @@
+.chatPageContainer {
+    display: flex;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    background-color: #f9f9f9;
+    flex-direction: row;
+}
+
+.chatPageContainer.chatSelectedMobile {
+}
+
+.navbar {
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+@media (max-width: 768px) {
+    .chatPageContainer {
+        flex-direction: column;
+    }
+
+    .chatPageContainer > aside,
+    .chatPageContainer > main {
+        width: 100%;
+        height: auto;
+    }
+
+    .hideOnMobile {
+        display: none !important;
+    }
+}

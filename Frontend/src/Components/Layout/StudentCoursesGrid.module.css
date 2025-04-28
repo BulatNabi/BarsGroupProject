@@ -1,0 +1,100 @@
+.wrapper {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 80vh;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    width: 100%;
+    padding: 0;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+.card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card figcaption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background-image: linear-gradient(to top, rgba(33, 44, 55, 0.75), rgba(33, 44, 55, 0));
+    border-radius: 0 0 12px 12px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.card:hover figcaption {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        width: 95%;
+        padding: 15px 0;
+        min-height: auto;
+    }
+
+    .grid {
+        gap: 20px;
+    }
+
+    .card figcaption {
+        padding: 1rem 0.8rem;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        width: 95%;
+        padding: 10px 0;
+    }
+
+    .grid {
+        gap: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .card figcaption {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.8em;
+    }
+}
+
+.card:focus figcaption {
+    opacity: 1;
+}
+
+.card:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}

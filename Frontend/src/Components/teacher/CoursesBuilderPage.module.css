@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.courseBuilderContainer {
+    padding: 30px;
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.courseBuilderContainer h2,
+.courseBuilderContainer h3 {
+    text-align: center;
+    color: #3A0068;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.courseBuilderContainer h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.courseBuilderContainer h3 {
+    font-size: 1.5em;
+    margin-bottom: 25px;
+}
+
+.progressBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 0 10px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #a0aec0;
+    transition: all 0.3s ease;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    flex-shrink: 0;
+}
+
+.step.active {
+    border-color: #8A2BE2;
+    background: linear-gradient(45deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.2);
+}
+
+.connector {
+    flex-grow: 1;
+    height: 3px;
+    background-color: #e2e8f0;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.connector.active {
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+}
+
+.stepContent {
+    padding: 30px;
+    border: none;
+    border-radius: 12px;
+    background-color: #fff;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.stepContent h4 {
+    margin-bottom: 15px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #3A0068;
+}
+
+.stepContent h5 {
+    margin-bottom: 10px;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.formGroup {
+    margin-bottom: 25px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.95em;
+    font-family: 'Inter', sans-serif;
+}
+
+.formGroup input[type="text"],
+.formGroup textarea,
+.inputField {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+    color: #2d3748;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formGroup input[type="text"]:focus,
+.formGroup textarea:focus,
+.inputField:focus {
+    border-color: #8A2BE2;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.15);
+}
+
+.formGroup textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.imageUpload {
+    border: 2px dashed #8A2BE2;
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #fcfaff;
+    margin-bottom: 25px;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.imageUpload:hover {
+    border-color: #4B0082;
+    background-color: #f7f2ff;
+}
+
+.imagePlaceholder {
+    color: #6c2eb7;
+    margin-bottom: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.imagePlaceholder svg {
+    display: block;
+    margin: 0 auto 10px auto;
+    width: 40px;
+    height: 40px;
+    fill: #6c2eb7;
+}
+
+.previewImage {
+    max-width: 100%;
+    max-height: 250px;
+    margin: 0 auto 20px auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.uploadButton,
+.addLectureForm .addButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6c2eb7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 2px 8px rgba(108, 46, 183, 0.2);
+}
+
+.uploadButton:hover,
+.addLectureForm .addButton:hover {
+    background-color: #4B0082;
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
+}
+
+.uploadButton:active,
+.addLectureForm .addButton:active {
+    background-color: #3A0068;
+    box-shadow: 0 1px 5px rgba(75, 0, 130, 0.2);
+}
+
+.navigationButtons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.navButton {
+    padding: 12px 30px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.20);
+    font-family: 'Inter', sans-serif;
+}
+
+.navButton:hover {
+    background: linear-gradient(90deg, #7b24ca 0%, #4B0082 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.25);
+}
+
+.navButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.15);
+}
+
+.lectureList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lectureList li {
+    background-color: #f8faff;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: #555;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    word-break: break-word;
+}
+
+.removeButton {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 10px;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.removeButton:hover {
+    text-decoration: underline;
+    color: #c82333;
+}
+
+.addLectureForm {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.addLectureForm h4 {
+    margin-bottom: 15px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #3A0068;
+}
+
+.addLectureForm button {
+    margin-right: 10px;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: 1.5px solid #d1d5db;
+    background-color: #f8f9fa;
+    font-size: 0.95em;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    color: #4a5568;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.addLectureForm button:hover {
+    background-color: #eef2ff;
+    border-color: #8A2BE2;
+    color: #3A0068;
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.08);
+}
+
+.addLectureForm button.activeType {
+    background-color: #6c2eb7;
+    border-color: #6c2eb7;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(108, 46, 183, 0.3);
+}
+
+.addLectureForm button.activeType:hover {
+    background-color: #4B0082;
+    border-color: #4B0082;
+    color: white;
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.4);
+}
+
+.testPlaceholder {
+    text-align: center;
+    padding: 40px 20px;
+    border: 2px dashed #8A2BE2;
+    border-radius: 8px;
+    margin-top: 20px;
+    color: #6c2eb7;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.testPlaceholder svg {
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+    fill: #6c2eb7;
+}
+
+.resetButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #6c2eb7;
+    border: 1.5px solid #6c2eb7;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 10;
+}
+
+.resetButton:hover {
+    background-color: #6c2eb7;
+    color: white;
+    border-color: #6c2eb7;
+    box-shadow: 0 4px 12px rgba(108, 46, 183, 0.2);
+}
+
+.resetButton:active {
+    background-color: #4B0082;
+    border-color: #4B0082;
+    box-shadow: 0 1px 5px rgba(75, 0, 130, 0.3);
+}
+
+.resetButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.questionList {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.questionList h4 {
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #3A0068;
+}
+
+.questionList p {
+    color: #555;
+    font-style: italic;
+}
+
+.questionList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.questionListItem {
+    background-color: #f8faff;
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    word-break: break-word;
+}
+
+.questionListItem .deleteButton {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.4em;
+    margin-left: 15px;
+    padding: 0 5px;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.questionListItem .deleteButton:hover {
+    color: #c82333;
+}
+
+.separator {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 30px 0;
+}
+
+.answerOptionsSection {
+    margin-top: 20px;
+}
+
+.answerOption {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: 1.5px solid transparent;
+}
+
+.answerLabel {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    color: #2d3748;
+}
+
+.checkbox {
+    opacity: 1;
+    width: 20px;
+    height: 20px;
+    position: static;
+    pointer-events: auto;
+    margin: 0;
+    flex-shrink: 0;
+    appearance: checkbox;
+}
+
+.answerLabel .checkbox:focus-visible {
+    outline: 2px solid rgba(138, 43, 226, 0.4);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.answerLabel .inputField {
+    flex-grow: 1;
+    padding: 10px 12px;
+    margin-right: 0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #fff;
+    border: 1.5px solid #d1d5db;
+    color: #2d3748;
+}
+
+.answerLabel .inputField:focus {
+    border-color: #8A2BE2;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.15);
+}
+
+.answerOption .deleteButton {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: 0;
+    padding: 0 5px;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.answerOption .deleteButton:hover {
+    color: #c82333;
+}
+
+.formGroup .addButton {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: transparent;
+    color: #6c2eb7;
+    border: 1.5px solid #6c2eb7;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.formGroup .addButton:hover {
+    background-color: #6c2eb7;
+    color: white;
+    border-color: #6c2eb7;
+    box-shadow: 0 2px 8px rgba(108, 46, 183, 0.2);
+}
+
+.formGroup .addButton:active {
+    background-color: #4B0082;
+    border-color: #4B0082;
+    box-shadow: 0 1px 5px rgba(75, 0, 130, 0.3);
+}
+
+.addQuestionForm>.addButton {
+    display: inline-block;
+    background-color: #6c2eb7;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(108, 46, 183, 0.2);
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+.addQuestionForm>.addButton:hover {
+    background-color: #4B0082;
+    box-shadow: 0 4px 12px rgba(75, 0, 130, 0.3);
+}
+
+.addQuestionForm>.addButton:active {
+    background-color: #3A0068;
+    box-shadow: 0 1px 5px rgba(75, 0, 130, 0.2);
+}
+
+@media (max-width: 768px) {
+    .courseBuilderContainer {
+        padding: 20px;
+    }
+
+    .resetButton {
+        top: 20px;
+        left: 20px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .navigationButtons {
+        padding-bottom: 40px;
+    }
+
+    .progressBar .step {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9em;
+    }
+
+    .progressBar .connector {
+        margin: 0 8px;
+    }
+
+    .questionListItem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 10px 15px;
+    }
+
+    .questionListItem .deleteButton {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .answerOption {
+        flex-wrap: wrap;
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .answerLabel {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .answerLabel .inputField {
+        padding: 8px 10px;
+    }
+
+    .answerOption .deleteButton {
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .courseBuilderContainer {
+        padding: 15px;
+    }
+
+    .resetButton {
+        top: 15px;
+        left: 15px;
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    .navigationButtons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding-bottom: 30px;
+    }
+
+    .navButton {
+        width: 100%;
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+
+    .progressBar {
+        padding: 0 5px;
+    }
+
+    .progressBar .step {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8em;
+    }
+
+    .progressBar .connector {
+        margin: 0 5px;
+    }
+
+    .questionListItem {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .answerOption {
+        gap: 3px;
+        padding: 3px;
+    }
+
+    .answerLabel {
+        gap: 5px;
+    }
+
+    .answerLabel .inputField {
+        padding: 6px 8px;
+        font-size: 0.9em;
+    }
+
+    .answerOption .deleteButton {
+        font-size: 1em;
+        margin-top: 3px;
+    }
+}

@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+.statisticsContainer {
+    padding: 40px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    text-align: center;
+    font-weight: 700;
+}
+
+.cardsContainer {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.statCard {
+    background-color: #f8faff;
+    border-radius: 12px;
+    padding: 25px;
+    flex: 1;
+    min-width: 220px;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #eef2ff;
+}
+
+.statCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.statCard h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: #3A0068;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.statNumber {
+    font-size: 2.5em;
+    color: #6c2eb7;
+    margin-top: 5px;
+    font-weight: 700;
+}
+
+.chartSection,
+.topStudentsSection,
+.coursesListSection {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.sectionTitle {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    font-weight: 700;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.topStudentsSection {
+}
+
+.studentsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.studentItem {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1em;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.studentItem:last-child {
+    border-bottom: none;
+}
+
+.studentItem:hover {
+    color: #3A0068;
+}
+
+.coursesListSection .sectionTitle {
+}
+
+.coursesListSection .studentsList .studentItem {
+    cursor: pointer;
+}
+
+.coursesListSection .studentsList .studentItem:hover {
+    background-color: #f8faff;
+}
+
+.loading, .error {
+    font-size: 1.1em;
+    color: #555;
+    text-align: center;
+    padding: 20px;
+}
+
+.error {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .statisticsContainer {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .cardsContainer {
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .statCard {
+        padding: 20px;
+        min-width: 180px;
+        max-width: none;
+    }
+
+    .statCard h3 {
+        font-size: 1.1em;
+    }
+
+    .statNumber {
+        font-size: 2em;
+    }
+
+    .chartSection,
+    .topStudentsSection,
+    .coursesListSection {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .sectionTitle {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .studentItem {
+        padding: 10px 0;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .statisticsContainer {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+
+    .cardsContainer {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .statCard {
+        padding: 15px;
+        min-width: 140px;
+    }
+
+    .statCard h3 {
+        font-size: 1em;
+    }
+
+    .statNumber {
+        font-size: 1.8em;
+    }
+
+    .chartSection,
+    .topStudentsSection,
+    .coursesListSection {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .sectionTitle {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .studentItem {
+        padding: 8px 0;
+        font-size: 0.95em;
+    }
+}

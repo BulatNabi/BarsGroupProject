@@ -1,0 +1,819 @@
+.modalOverlay {
+    position: fixed;
+    top: 65px;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+.modalContent {
+    background-color: #fff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+.courseDetailPage {
+    padding: 10px
+}
+
+.closeButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.8rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.2s ease;
+    z-index: 1001;
+}
+
+.closeButton:hover {
+    color: #3A0068;
+}
+
+.detailHeader {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.detailHeader h3.courseTitle {
+    margin: 0 0 5px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2em;
+    color: #3A0068;
+    word-break: break-word;
+}
+
+.detailHeader p {
+    margin: 0;
+    font-size: 1.1em;
+    color: #555;
+    word-break: break-word;
+}
+
+.detailBody {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.previewArea {
+    flex: 0 0 50%;
+    max-width: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.previewPlaceholder {
+    width: 100%;
+    height: 300px;
+    background-color: #eef2ff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6c2eb7;
+    font-size: 1.2em;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.previewPlaceholder img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.infoArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.nameAndDescription h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.nameAndDescription p {
+    font-size: 1.1em;
+    margin: 0;
+}
+
+.deleteButton {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+    margin-top: auto;
+}
+
+.deleteButton:hover {
+    background-color: #c82333;
+    box-shadow: 0 6px 20px rgba(200, 35, 51, 0.25);
+}
+
+.deleteButton:active {
+    background-color: #bd2130;
+    box-shadow: 0 2px 8px rgba(200, 35, 51, 0.15);
+}
+
+.editButton {
+    display: block;
+    width: 50%;
+    margin: 20px 0 0 0;
+    padding: 12px 20px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.20);
+}
+
+.editButton:hover {
+    background: linear-gradient(90deg, #7b24ca 0%, #4B0082 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.25);
+}
+
+.editButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.15);
+}
+
+.lessonsArea,
+.studentsArea {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.lessonsArea h4,
+.studentsArea h4 {
+    margin: 0 0 15px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4em;
+    color: #3A0068;
+    font-weight: 600;
+}
+
+.lessonsArea ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.lessonsArea li {
+    width: calc(50% - 7.5px);
+    color: #555;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8faff;
+    border: 1px solid #e0e0e0;
+    padding: 15px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    word-break: break-word;
+    font-size: 1.1em;
+    box-sizing: border-box;
+}
+
+.lessonsArea li:hover {
+    background-color: #eef2ff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.exportButton {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+.exportButton:hover {
+    background-color: #218838;
+    box-shadow: 6px 20px rgba(33, 136, 56, 0.25);
+}
+
+.exportButton:active {
+    background-color: #1e7e34;
+    box-shadow: 2px 8px rgba(33, 136, 56, 0.15);
+}
+
+.exportButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    background-color: #28a745;
+}
+
+.progressTable tbody tr td a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.progressTable tbody tr td a:hover {
+    text-decoration: underline;
+}
+
+.progressTableContainer {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+}
+
+.progressTable {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+.progressTable th,
+.progressTable td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.progressTable th {
+    background-color: #f8faff;
+    font-weight: 600;
+    color: #3A0068;
+    text-transform: uppercase;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+}
+
+.progressTable th:first-child,
+.progressTable td:first-child {
+    width: 20%;
+    min-width: 150px;
+}
+
+.progressTable th:nth-child(2),
+.progressTable td:nth-child(2) {
+    width: 15%;
+    min-width: 100px;
+}
+
+.progressTable th:nth-child(n+3),
+.progressTable td:nth-child(n+3) {
+    width: auto;
+    min-width: 120px;
+}
+
+.progressTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.progressTable tbody tr:nth-child(even) {
+    background-color: #fcfaff;
+}
+
+.progressTable td {
+    font-size: 1em;
+    color: #555;
+}
+
+.progressTable td:nth-child(n+3) {
+    text-align: center;
+    font-weight: 500;
+}
+
+.progressTable td.completed {
+    background-color: #e9f7ef;
+    color: #28a745;
+}
+
+.progressTable td.notCompleted {
+    background-color: #fdeded;
+    color: #dc3545;
+}
+
+.completionStatus {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.testScore {
+    display: inline-block;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.courseDetailAddLesson {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.courseDetailAddLesson h3 {
+    text-align: center;
+    color: #3A0068;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.cancelButton {
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    padding: 12px 20px;
+    background-color: transparent;
+    color: #dc3545;
+    border: 1.5px solid #dc3545;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
+
+.cancelButton:hover {
+    background-color: #dc3545;
+    color: white;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.cancelButton:active {
+    background-color: #c82333;
+    box-shadow: 0 1px 5px rgba(220, 53, 69, 0.15);
+}
+
+.loadingOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: #3A0068;
+    z-index: 10;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.errorMessage {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    word-break: break-word;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95em;
+}
+
+.validationErrors {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f2dede;
+    border: 1px solid #ebcccc;
+    border-radius: 4px;
+    font-size: 0.85em;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 1024px) {
+    .modalContent {
+        max-width: 800px;
+    }
+
+    .detailBody {
+        gap: 30px;
+    }
+
+    .previewArea {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+
+    .previewPlaceholder {
+        height: 250px;
+    }
+
+    .infoArea {
+        gap: 10px;
+    }
+
+    .nameAndDescription h4 {
+        font-size: 1.2em;
+    }
+
+    .nameAndDescription p {
+        font-size: 1em;
+    }
+
+    .editButton {
+        width: 50%;
+        font-size: 1em;
+    }
+
+    .lessonsArea ul {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .lessonsArea li {
+        width: calc(50% - 5px);
+        padding: 12px 15px;
+    }
+
+    .lessonsArea h4,
+    .studentsArea h4 {
+        font-size: 1.3em;
+    }
+
+    .exportButton {
+        font-size: 0.95em;
+    }
+
+    .studentsArea {
+        margin-top: 15px;
+    }
+
+    .progressTable {
+        min-width: 500px;
+    }
+
+    .progressTable th,
+    .progressTable td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .testScore {
+        font-size: 0.85em;
+    }
+
+    .courseDetailAddLesson {
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .courseDetailAddLesson h3 {
+        font-size: 1.3em;
+    }
+
+    .cancelButton {
+        padding: 10px 15px;
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 768px) {
+    .modalOverlay {
+        padding: 10px 0;
+    }
+
+    .modalContent {
+        padding: 20px;
+        gap: 20px;
+        border-radius: 0;
+        box-shadow: none;
+        max-width: none;
+    }
+
+    .closeButton {
+        top: 10px;
+        right: 10px;
+        font-size: 1.5rem;
+    }
+
+    .detailHeader h3.courseTitle {
+        font-size: 1.8em;
+    }
+
+    .detailHeader p {
+        font-size: 1em;
+    }
+
+    .detailBody {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .previewArea {
+        flex: auto;
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .previewPlaceholder {
+        width: 280px;
+        height: 200px;
+    }
+
+    .infoArea {
+        flex: auto;
+        gap: 10px;
+    }
+
+    .nameAndDescription h4 {
+        font-size: 1.1em;
+    }
+
+    .nameAndDescription p {
+        font-size: 1em;
+    }
+
+    .deleteButton {
+        align-self: stretch;
+        text-align: center;
+        padding: 10px 15px;
+        font-size: 0.95em;
+        margin-top: 10px;
+    }
+
+    .editButton {
+        width: 100%;
+        margin: 20px 0 0 0;
+        padding: 12px 15px;
+        font-size: 1em;
+        text-align: center;
+    }
+
+    .lessonsArea {
+        padding-top: 15px;
+        margin-top: 15px;
+    }
+
+    .lessonsArea h4 {
+        font-size: 1.3em;
+    }
+
+    .lessonsArea ul {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .lessonsArea li {
+        width: 100%;
+        padding: 12px 15px;
+        margin-bottom: 0;
+    }
+
+    .exportButton {
+        padding: 8px 15px;
+        font-size: 0.95em;
+    }
+
+    .studentsArea {
+        padding-top: 15px;
+        margin-top: 15px;
+    }
+
+    .studentsArea h4 {
+        font-size: 1.3em;
+    }
+
+    .progressTableContainer {
+        min-width: auto;
+        overflow-x: auto;
+    }
+
+    .progressTable {
+        min-width: 500px;
+    }
+
+    .progressTable th,
+    .progressTable td {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .testScore {
+        font-size: 0.85em;
+    }
+
+    .courseDetailAddLesson {
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .courseDetailAddLesson h3 {
+        font-size: 1.3em;
+    }
+
+    .cancelButton {
+        padding: 10px 15px;
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .modalOverlay {
+        padding: 5px 0;
+    }
+
+    .modalContent {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .closeButton {
+        top: 8px;
+        right: 8px;
+        font-size: 1.3rem;
+    }
+
+    .detailHeader h3.courseTitle {
+        font-size: 1.5em;
+    }
+
+    .detailHeader p {
+        font-size: 0.9em;
+    }
+
+    .detailBody {
+        gap: 15px;
+    }
+
+    .previewArea {
+        align-items: center;
+    }
+
+    .previewPlaceholder {
+        width: 250px;
+        height: 180px;
+    }
+
+    .infoArea {
+        gap: 8px;
+    }
+
+    .nameAndDescription h4 {
+        font-size: 1em;
+    }
+
+    .nameAndDescription p {
+        font-size: 0.95em;
+    }
+
+    .deleteButton {
+        padding: 8px 12px;
+        font-size: 0.9em;
+        margin-top: 8px;
+    }
+
+    .editButton {
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .lessonsArea {
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    .lessonsArea h4 {
+        font-size: 1.2em;
+    }
+
+    .lessonsArea ul {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .lessonsArea li {
+        width: 100%;
+        padding: 10px 12px;
+    }
+
+    .exportButton {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    .studentsArea {
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    .studentsArea h4 {
+        font-size: 1.2em;
+    }
+
+    .progressTableContainer {
+        min-width: auto;
+    }
+
+    .progressTable {
+        min-width: 350px;
+    }
+
+    .progressTable th,
+    .progressTable td {
+        padding: 6px 8px;
+        font-size: 0.8em;
+    }
+
+    .progressTable td:nth-child(n+3) {
+        font-size: 0.75em;
+        padding: 4px 6px;
+    }
+
+    .courseDetailAddLesson {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    .courseDetailAddLesson h3 {
+        font-size: 1.2em;
+    }
+
+    .cancelButton {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,216 @@
+.testContainer {
+    max-width: 700px;
+    margin: 80px auto 40px;
+    padding: 30px;
+    background-color: #f8faff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Inter', sans-serif;
+}
+
+.testContainer h2 {
+    color: #3A0068;
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8em;
+}
+
+.questionBlock {
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #eef2ff;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.questionText {
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+    line-height: 1.5;
+    font-size: 1.1em;
+}
+
+.optionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.optionLabel {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #eef2ff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    background-color: #f8faff;
+    color: #555;
+    font-size: 1em;
+}
+
+.optionLabel:hover {
+    background-color: #eef2ff;
+    border-color: #d0d8e6;
+}
+
+.radioInput {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.optionLabel.correct {
+    background-color: #d1e7dd;
+    border-color: #a3cfbb;
+    color: #0f5132;
+    font-weight: 600;
+}
+
+.optionLabel.incorrect {
+    background-color: #f8d7da;
+    border-color: #f1aeb5;
+    color: #842029;
+    font-weight: 600;
+}
+
+.submitButton {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 30px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.20);
+}
+
+.submitButton:hover:not(:disabled) {
+    background: linear-gradient(90deg, #7b24ca 0%, #4B0082 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.25);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.15);
+}
+
+.submitButton:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+    transform: none;
+}
+
+.results {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px dashed #6c2eb7;
+    border-radius: 8px;
+    background-color: #eef2ff;
+    text-align: center;
+    color: #3A0068;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.results h3 {
+    color: #3A0068;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.submittedMessage {
+    margin-top: 15px;
+    text-align: center;
+    color: #555;
+    font-style: italic;
+    font-size: 1em;
+}
+
+.loading, .error, .noContent {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.loading {
+    color: #3A0068;
+}
+
+.error {
+    color: #dc3545;
+}
+
+.noContent {
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .testContainer {
+        margin: 70px auto 30px;
+        padding: 25px;
+        border-radius: 10px;
+    }
+
+    .testContainer h2 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .questionBlock, .optionLabel, .results {
+        padding: 15px;
+        border-radius: 6px;
+    }
+
+    .questionBlock {
+        margin-bottom: 20px;
+    }
+
+    .results {
+        margin-top: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testContainer {
+        margin: 60px auto 20px;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .testContainer h2 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .questionBlock {
+        padding: 12px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    .optionsList {
+        gap: 8px;
+    }
+
+    .submitButton {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+        margin-top: 20px;
+    }
+
+    .results {
+        padding: 12px;
+        margin-top: 20px;
+    }
+}
