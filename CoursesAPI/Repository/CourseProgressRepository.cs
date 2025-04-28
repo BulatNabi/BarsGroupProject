@@ -35,6 +35,7 @@ public class CourseProgressRepository : ICourseProgressInterface
     {
         return  _context.CourseProgresses
             .Include(u => u.User)
+            .Include(u => u.Course)
             .ToListAsync();
     }
 
