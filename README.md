@@ -3,7 +3,7 @@
 ### Хост
 
 
-* **Основное приложение:** [AdminPanel](https://404-brain-not-found.ru)
+* **Панель администратора:** [AdminPanel](https://404-brain-not-found.ru)
 * **Telegram miniApps:** [MiniApps](t.me/team404brainnotfound_bot) (После старта внизу слева кнопка 'START') 
 
 ### Установка и Запуск
