@@ -132,7 +132,7 @@ const CourseDetail = () => {
 
         return (
             <div className={styles.courseDetailAddLesson}>
-                <h3>Добавление нового урока к курсу "{course.name}"</h3>
+                <h3>Добавление нового урока к курсу "{course.title}"</h3>
 
                 {isAddingLessonOrTests && (
                     <div className={styles.loadingOverlay}>
