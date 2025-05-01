@@ -1,4 +1,4 @@
-/* Добавь link тег для Poppins в HTML head */
+
 
 html,
 body {
@@ -6,7 +6,7 @@ body {
     padding: 0;
     min-height: 100vh;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif; /* Основной шрифт Inter */
+    font-family: 'Inter', sans-serif;
 }
 
 .authContainer {
@@ -15,7 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px; /* Добавляем небольшой паддинг на случай маленьких экранов */
+    padding: 20px;
     background: linear-gradient(135deg, #9e49ee 0%, #4B0082 100%);
 }
 
@@ -23,9 +23,9 @@ body {
     background: #fff;
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15); /* Чуть сильнее тень */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 450px; /* Немного увеличим максимальную ширину */
+    max-width: 450px;
     text-align: center;
     border: none;
     position: relative;
@@ -33,13 +33,12 @@ body {
 }
 
 .authForm h2 {
-    margin-bottom: 10px; /* Уменьшаем отступ после заголовка */
-    /* Цвет ближе к темному пурпурному из градиента */
+    margin-bottom: 10px;
     color: #3A0068;
-    font-size: 2.4em; /* Чуть крупнее заголовок */
+    font-size: 2.4em;
     font-weight: 700;
-    letter-spacing: 0; /* Убираем отрицательный трекинг */
-    font-family: 'Poppins', sans-serif; /* Шрифт для заголовка */
+    letter-spacing: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 .authForm p {
