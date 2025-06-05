@@ -1,5 +1,6 @@
-# 404 Brain Not Found Team
 
+# 404 Brain Not Found Team
+# В настоящее время сервис не работает!!!
 ### Хост
 
 
@@ -40,3 +41,10 @@
 
 ```bash
 docker compose down
+```
+
+### Разработчики
+* **Backend Dev:** `t.me/talubrni`
+* **Frontend Dev:** `t.me/Mazzotta33`
+  
+  
