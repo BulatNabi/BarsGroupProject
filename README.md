@@ -44,7 +44,7 @@ docker compose down
 ```
 
 ### Разработчики
-* **Backend Dev (Набиуллин Булат):** `t.me/talubrni`
+* **Backend Dev (Набиуллин Булат):** `t.me/talubarni`
 * **Frontend Dev (Гатин Разиль):** `t.me/Mazzotta33`
   
   
