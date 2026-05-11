@@ -14,7 +14,7 @@ import CoursesGrid from "./Components/Layout/CoursesGrid.jsx";
 import StudentCoursesGrid from "./Components/Layout/StudentCoursesGrid.jsx";
 import { useTelegramAuthMutation } from "./Redux/api/authApi.js";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "./Redux/slices/authSlice.js";
+import { setCredentials, logout as logoutAction } from "./Redux/slices/authSlice.js";
 import TestThemeInputPage from "./Components/Quiz/TestThemeInputPage.jsx";
 import CourseDetail from "./Components/teacher/Courses/CourseDetail/CourseDetail.jsx";
 import AdminLayout from "./Components/admin/AdminLayout.jsx";
@@ -80,7 +80,18 @@ function App() {
     };
 
     useEffect(() => {
-        if (initData && !isLoggedIn) {
+        // In the Telegram Mini-App, initData is always present. Re-authenticate on
+        // every load so the stored JWT is always fresh. Stale tokens (after a JWT
+        // key rotation or 7-day expiry) silently 401 every protected endpoint.
+        if (initData) {
+            // Clear any stale auth so RTK Query queries can't fire with a dead token
+            // during the auth round-trip. Loading screen stays up until auth resolves.
+            localStorage.removeItem('token');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('isLoggedIn');
+            dispatch(logoutAction());
+            setIsLoggedIn(false);
+            setUserRole(null);
             telegramAuth(initData);
         } else {
             setIsLoading(false);
@@ -92,7 +103,7 @@ function App() {
         };
         window.addEventListener('storage', handleStorageChange);
         return () => window.removeEventListener('storage', handleStorageChange);
-    }, [telegramAuth]);
+    }, [telegramAuth, dispatch]);
 
     useEffect(() => {
         if (isAuthSuccess && authData) {
