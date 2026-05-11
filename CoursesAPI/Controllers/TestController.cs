@@ -81,7 +81,7 @@ namespace CoursesAPI.Controllers
 
         
         [HttpPost("lesson/{lessonId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<ActionResult<List<TestViewModelDto>>> CreateTests(int lessonId, List<TestCreateModelDto> createTestDto)
         {
             if (!ModelState.IsValid)
@@ -119,7 +119,7 @@ namespace CoursesAPI.Controllers
         }
         
         [HttpPut("lesson/{lessonId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<IActionResult> UpdateTests(List<TestUpdateModelDto> updateTestsDtos)
         {
             if (!ModelState.IsValid)
@@ -161,7 +161,7 @@ namespace CoursesAPI.Controllers
         }
 
         [HttpDelete("{testId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<ActionResult<TestViewModelDto>> DeleteTest(int testId)
         {
             var test = await _testRepository.DeleteTestByIdAsync(testId);

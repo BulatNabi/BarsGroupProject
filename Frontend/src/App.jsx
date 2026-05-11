@@ -5,7 +5,6 @@ import Register from "./Components/AuthAndReg/Register.jsx";
 import TeacherDashboard from "./Components/teacher/TeacherDashboard.jsx";
 import CourseBuilderPage from "./Components/teacher/CourseBuilderPage.jsx";
 import StatisticsPage from "./Components/teacher/StatisticsPage.jsx";
-import ChatPage from "./Components/Chat/ChatPage.jsx";
 import LessonPage from "./Components/Layout/LessonPage/LessonPage.jsx";
 import AdminCourses from "./Components/teacher/Courses/AdminCourses.jsx";
 import UserLayout from "./Components/Layout/UserLayout.jsx";
@@ -16,11 +15,42 @@ import StudentCoursesGrid from "./Components/Layout/StudentCoursesGrid.jsx";
 import { useTelegramAuthMutation } from "./Redux/api/authApi.js";
 import TestThemeInputPage from "./Components/Quiz/TestThemeInputPage.jsx";
 import CourseDetail from "./Components/teacher/Courses/CourseDetail/CourseDetail.jsx";
+import AdminLayout from "./Components/admin/AdminLayout.jsx";
+import AdminDashboard from "./Components/admin/AdminDashboard.jsx";
+import UsersManagement from "./Components/admin/UsersManagement.jsx";
+import TeachersManagement from "./Components/admin/TeachersManagement.jsx";
+import AllCourses from "./Components/admin/AllCourses.jsx";
+import PlatformStatistics from "./Components/admin/PlatformStatistics.jsx";
+import FeedbackInbox from "./Components/admin/FeedbackInbox.jsx";
 
 const initData = window.Telegram?.WebApp?.initData || null;
 
-const LoadingScreen = () => {
-    return <div>Загрузка приложения...</div>;
+const LoadingScreen = () => (
+    <div style={{
+        minHeight: '100vh',
+        display: 'grid',
+        placeItems: 'center',
+        color: 'var(--text-2)',
+        fontSize: 14,
+    }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+            <div style={{
+                width: 56,
+                height: 56,
+                borderRadius: 16,
+                background: 'var(--gradient-primary)',
+                boxShadow: 'var(--glow-primary)',
+                animation: 'float-slow 2s ease-in-out infinite',
+            }} />
+            <span>Загрузка…</span>
+        </div>
+    </div>
+);
+
+const landingFor = (role) => {
+    if (role === 'Admin') return '/admin';
+    if (role === 'Teacher') return '/teacher';
+    return '/mainwindow';
 };
 
 function App() {
@@ -35,7 +65,7 @@ function App() {
         isSuccess: isAuthSuccess,
         isError: isAuthError,
         error: authError,
-        data: authData
+        data: authData,
     }] = useTelegramAuthMutation();
 
     const handleLogout = () => {
@@ -54,51 +84,37 @@ function App() {
         }
 
         const handleStorageChange = () => {
-            const newIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            const newUserRole = localStorage.getItem('userRole');
-            setIsLoggedIn(newIsLoggedIn);
-            setUserRole(newUserRole);
+            setIsLoggedIn(localStorage.getItem('isLoggedIn') === 'true');
+            setUserRole(localStorage.getItem('userRole'));
         };
         window.addEventListener('storage', handleStorageChange);
-
-        return () => {
-            window.removeEventListener('storage', handleStorageChange);
-        };
+        return () => window.removeEventListener('storage', handleStorageChange);
     }, [telegramAuth]);
 
     useEffect(() => {
         if (isAuthSuccess && authData) {
+            const role = authData.role || 'User';
             localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('userRole', authData.role || 'User');
+            localStorage.setItem('userRole', role);
             localStorage.setItem('token', authData.token);
-
             setIsLoggedIn(true);
-            setUserRole(authData.role || 'User');
-
+            setUserRole(role);
             setIsLoading(false);
         }
     }, [isAuthSuccess, authData]);
 
     useEffect(() => {
-        if (isAuthError) {
-            setIsLoading(false);
-        }
+        if (isAuthError) setIsLoading(false);
     }, [isAuthError, authError]);
 
-    if (isLoading || isAuthLoading) {
-        return <LoadingScreen />;
-    }
+    if (isLoading || isAuthLoading) return <LoadingScreen />;
 
-    let targetPath;
-    if (isLoggedIn) {
-        targetPath = userRole === 'Admin' ? '/teacher' : '/mainwindow';
-    } else {
-        targetPath = '/register';
-    }
+    const targetPath = isLoggedIn ? landingFor(userRole) : '/register';
 
     return (
         <Routes>
             {location.pathname === '/' && <Route path="/" element={<Navigate to={targetPath} replace />} />}
+
             {!isLoggedIn && (
                 <>
                     <Route path="/login" element={<Login onLoginSuccess={(role) => { setIsLoggedIn(true); setUserRole(role); }} />} />
@@ -108,11 +124,22 @@ function App() {
             )}
 
             {isLoggedIn && userRole === 'Admin' && (
+                <Route path="/admin/*" element={<AdminLayout handleLogout={handleLogout} />}>
+                    <Route index element={<AdminDashboard />} />
+                    <Route path="users" element={<UsersManagement />} />
+                    <Route path="teachers" element={<TeachersManagement />} />
+                    <Route path="courses" element={<AllCourses />} />
+                    <Route path="stats" element={<PlatformStatistics />} />
+                    <Route path="feedback" element={<FeedbackInbox />} />
+                    <Route path="*" element={<Navigate to="/admin" replace />} />
+                </Route>
+            )}
+
+            {isLoggedIn && userRole === 'Teacher' && (
                 <Route path="/teacher/*" element={<TeacherLayout handleLogout={handleLogout} />}>
                     <Route index element={<TeacherDashboard />} />
                     <Route path="builder" element={<CourseBuilderPage />} />
                     <Route path="stats" element={<StatisticsPage />} />
-                    <Route path="chat" element={<ChatPage role={userRole} />} />
                     <Route path="mycourses" element={<AdminCourses />} />
                     <Route path="mycourses/detail/:courseId" element={<CourseDetail />} />
                     <Route path="courses/:courseId" element={<LessonPage role={userRole} />} />
@@ -125,7 +152,6 @@ function App() {
                     <Route path="mainwindow" element={<CoursesGrid/>} />
                     <Route path="courses/:courseId" element={<LessonPage role={userRole} />} />
                     <Route path="courses" element={<StudentCoursesGrid/>} />
-                    <Route path="chat" element={<ChatPage role={userRole} />} />
                     <Route path="profile" element={<ProfilePage/>}/>
                     <Route path="take-test" element={<TestThemeInputPage />} />
                     <Route path="*" element={<Navigate to="/mainwindow" replace />} />
@@ -133,9 +159,8 @@ function App() {
             )}
 
             {isLoggedIn && (
-                <Route path="*" element={<Navigate to={userRole === 'Admin' ? '/teacher' : '/mainwindow'} replace />} />
+                <Route path="*" element={<Navigate to={landingFor(userRole)} replace />} />
             )}
-
         </Routes>
     );
 }

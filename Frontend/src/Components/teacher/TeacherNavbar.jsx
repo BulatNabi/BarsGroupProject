@@ -17,7 +17,6 @@ const TeacherNavbar = ({ handleLogout }) => {
 
     const teacherLinks = [
         { path: '/teacher/mycourses', text: 'Мои курсы' },
-        { path: '/teacher/chat', text: 'Чат' },
         { path: '/teacher/stats', text: 'Статистика' },
     ];
 

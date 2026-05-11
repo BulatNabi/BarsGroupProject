@@ -3,6 +3,7 @@ using CoursesAPI.Interfaces;
 using CoursesAPI.Models;
 using CoursesAPI.Repository;
 using CoursesAPI.Service;
+using CoursesAPI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ builder.Services.AddScoped<ILessonInterface, LessonRepository>();
 builder.Services.AddScoped<ILessonProgressInterface, LessonProgressRepository>();
 builder.Services.AddScoped<ITestInterface, TestRepository>();
 builder.Services.AddScoped<ITestResultInterface, TestResultRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
+builder.Services.AddScoped<ITelegramSender, TelegramSender>();
 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
@@ -41,8 +44,6 @@ builder.Services.AddCors(options =>
                   .AllowCredentials();    
         });
 });
-
-builder.Services.AddSignalR();
 
 builder.Services.AddSwaggerGen(option =>
 {
@@ -107,35 +108,20 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(
             System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"] ?? string.Empty))
     };
-     
-     options.Events = new JwtBearerEvents
-     {
-         OnMessageReceived = context =>
-         {
-             var accessToken = context.Request.Query["access_token"];
-             var path = context.HttpContext.Request.Path;
-             if (!string.IsNullOrEmpty(accessToken) &&
-                 (path.StartsWithSegments("/chathub"))) 
-             {
-                 context.Token = accessToken;
-             }
-             return Task.CompletedTask;
-         }
-     };
 });
 
 builder.Services.AddHttpClient(); 
 
 var app = builder.Build();
 
+await DataSeeder.SeedAsync(app.Services, app.Logger);
+
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseWebSockets();
 app.UseRouting();
 app.UseCors(allowReactAppPolicy);
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapHub<ChatHubService>("/chathub");
 app.MapControllers();
 
 app.Run();

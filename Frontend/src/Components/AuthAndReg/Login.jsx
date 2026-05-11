@@ -1,10 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
+import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../../Redux/api/authApi';
 import { setCredentials } from '../../Redux/slices/authSlice';
 import styles from './AuthForm.module.css';
-import {useState} from "react";
 
 const Login = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState('');
@@ -37,7 +36,6 @@ const Login = ({ onLoginSuccess }) => {
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userRole', userRole);
 
-            alert(`Вы вошли как ${userRole}`);
             if (onLoginSuccess) {
                 onLoginSuccess(userRole);
             }
@@ -75,6 +73,10 @@ const Login = ({ onLoginSuccess }) => {
                 <button type="submit" className={styles.submitButton} disabled={isLoading}>
                     {isLoading ? 'Вход...' : 'Войти'}
                 </button>
+
+                <p className={styles.switchForm}>
+                    Нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
+                </p>
             </form>
         </div>
     );

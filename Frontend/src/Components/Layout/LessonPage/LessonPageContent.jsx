@@ -234,7 +234,7 @@ const CoursesPageContent = (props) => {
                                         </button>
                                     )}
 
-                                    {props.role === 'Admin' && (
+                                    {(props.role === 'Teacher' || props.role === 'Admin') && (
                                         <button
                                             onClick={handleDeleteLesson}
                                             className={styles.takeTestButton}

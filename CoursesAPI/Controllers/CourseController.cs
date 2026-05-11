@@ -169,7 +169,7 @@ namespace CoursesAPI.Controllers
 
     [HttpGet]
 [Route("{courseId}/usersprogress/download")]
-[Authorize(Roles = "Admin")]
+[Authorize(Roles = Roles.AdminOrTeacher)]
 public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
 {
     var course = await _courseRepository.GetCourseByIdAsync(courseId);
@@ -258,10 +258,10 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
             }
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             bool isOwner = course.OwnerId == currentUserId;
-            bool isAdmin = User.IsInRole("Admin");
+            bool isPrivileged = User.IsTeacherOrAdmin();
             bool isEnrolled = false;
 
-            if (!isOwner && !isAdmin)
+            if (!isOwner && !isPrivileged)
             {
                 if (string.IsNullOrEmpty(currentUserId))
                 {
@@ -270,7 +270,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
                 isEnrolled = await _courseRepository.IsUserEnrolledAsync(courseId, currentUserId);
             }
 
-            if (!isOwner && !isAdmin && !isEnrolled)
+            if (!isOwner && !isPrivileged && !isEnrolled)
             {
                 return Forbid();
             }
@@ -311,7 +311,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
             return Ok(courseViewModel);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         [HttpPost]
         public async Task<ActionResult<CourseViewModelDto>> CreateCourse(CourseCreateModelDto createModel)
         {
@@ -361,7 +361,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
         }
         
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         [Route("{courseId}/updateadmins")]
         public async Task<ActionResult<CourseViewModelDto>> UpdateCourseAdmins(int courseId, Dictionary<string, string> admins)
         {
@@ -383,15 +383,18 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
         {
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userRole = User.FindFirstValue(ClaimTypes.Role);
 
             if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized("Клейм ID пользователя не найден в JWT токене.");
             }
 
-            List<Course>? courses = new List<Course>();
-            if (userRole == "Admin")
+            List<Course>? courses;
+            if (User.IsAdmin())
+            {
+                courses = await _courseRepository.GetAllCoursesAsync();
+            }
+            else if (User.IsTeacher())
             {
                 courses = await _courseRepository.GetOwnedCoursesByIdAsync(userId);
             }
@@ -418,7 +421,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
         
         
         [HttpPut("{courseId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<IActionResult> CreateCourse(int courseId, CourseUpdateModelDto updateModel)
         {
             var course = await _courseRepository.GetCourseByIdAsync(courseId);
@@ -429,13 +432,13 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
 
 
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var isAdmin = User.IsInRole("Admin");
+            var isAdmin = User.IsAdmin();
 
             if (course.OwnerId != currentUserId && !isAdmin)
             {
                 return Forbid();
             }
-            
+
             var filePath = $"courses/course{course.Id}/previewPhoto";
             var previewPhotoKey = updateModel.PreviewPhoto != null ? await _s3.UploadFileAsync(updateModel.PreviewPhoto, filePath) : "";
             course.Title = updateModel.Title;
@@ -469,7 +472,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
         }
 
         [HttpDelete("{courseId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<IActionResult> DeleteCourse(int courseId)
         {
             var course = await _courseRepository.GetCourseByIdAsync(courseId);
@@ -479,7 +482,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
             }
 
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var isAdmin = User.IsInRole("Admin");
+            var isAdmin = User.IsAdmin();
 
             if (course.OwnerId != currentUserId && !isAdmin)
             {
@@ -503,16 +506,17 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
             {
                 return NotFound($"Курс с ID {courseId} не найден.");
             }
-            var currentUserRole = User.FindFirstValue(ClaimTypes.Role);
-            var user = new User();
+            User? user = null;
 
-            if (currentUserRole == "User")
+            if (User.IsTeacherOrAdmin())
+            {
+                user = await _userManager.Users.FirstOrDefaultAsync(u => u.TelegramUsername == telegranUsername);
+            }
+            else
             {
                 var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == currentUserId);
             }
-            else if (currentUserRole == "Admin")
-                user = await _userManager.Users.FirstOrDefaultAsync(u => u.TelegramUsername == telegranUsername);
             
             if (user == null)
                 return NotFound("User не найден");
@@ -549,7 +553,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
         }
 
          [HttpDelete("unregister")] 
-         [Authorize(Roles = "Admin")]
+         [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<IActionResult> UnregisterToCourse(int courseId, string? telegramUsername)
         {
             var course = await _courseRepository.GetCourseByIdAsync(courseId);

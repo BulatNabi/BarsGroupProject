@@ -1,0 +1,129 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 3px solid #8A2BE2;
+    box-sizing: border-box;
+}
+
+.logoSection {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.brand {
+    color: #3A0068;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.navLinks {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.navLinkItem {
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: color 0.2s, border-bottom-color 0.2s;
+    font-family: 'Inter', sans-serif;
+    border-bottom: 2px solid transparent;
+}
+
+.navLinkItem:hover {
+    color: #8A2BE2;
+    border-bottom-color: #8A2BE2;
+}
+
+.navLinkItem.active {
+    color: #3A0068;
+    border-bottom-color: #8A2BE2;
+}
+
+.authButtons {
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.logoutButton {
+    padding: 8px 15px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.10);
+    font-family: 'Inter', sans-serif;
+}
+
+.logoutButton:hover {
+    background: linear-gradient(90deg, #7b24ca 0%, #4B0082 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.15);
+}
+
+.mobileMenuToggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #3A0068;
+    padding: 5px;
+    margin-left: auto;
+}
+
+.main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .navLinks { display: none; }
+    .mobileMenuToggle { display: block; }
+    .navLinks.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 10px 20px;
+        gap: 0;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+    }
+    .navLinks.open .navLinkItem {
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+        border-bottom-color: transparent;
+        width: 100%;
+    }
+    .navLinks.open .navLinkItem.active {
+        color: #3A0068;
+        background-color: #f8faff;
+    }
+}

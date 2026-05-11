@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from './logo.jpg';
 import profile from './Profile.png';
 import { useGetUserInfoQuery } from "../../Redux/api/authApi.js";
+import FeedbackModal from './FeedbackModal.jsx';
 
 const TopNavbar = () => {
     const [visibleTooltip, setVisibleTooltip] = useState(null);
@@ -47,14 +48,13 @@ const TopNavbar = () => {
                     >
                         Пройти тест
                     </Link>
-                    <Link
-                        to="/chat"
-                        onMouseEnter={() => !isFeedbackModalOpen && setVisibleTooltip('courses')} // Возможно, тут должна быть другая логика тултипа
+                    <button
+                        type="button"
                         className={styles.navLinkItem}
-                        onClick={toggleMenu}
+                        onClick={() => { setIsFeedbackModalOpen(true); setIsMenuOpen(false); }}
                     >
                         Обратная связь
-                    </Link>
+                    </button>
                 </div>
 
                 <div className={styles.lastpart}>
@@ -63,6 +63,7 @@ const TopNavbar = () => {
                     </div>
                 </div>
             </div>
+            <FeedbackModal open={isFeedbackModalOpen} onClose={() => setIsFeedbackModalOpen(false)} />
         </div>
     );
 };

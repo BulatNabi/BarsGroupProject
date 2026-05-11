@@ -56,7 +56,8 @@ namespace CoursesAPI.Controllers
             }
 
             bool isOwner = course.OwnerId == currentUserId;
-            bool isAdmin = User.IsInRole("Admin");
+            bool isAdmin = User.IsAdmin();
+            bool isTeacher = User.IsTeacher();
 
             if (requireOwnerOrAdmin)
             {
@@ -68,7 +69,7 @@ namespace CoursesAPI.Controllers
             else
             {
                 bool isEnrolled = await _courseRepository.IsUserEnrolledAsync(courseId, currentUserId);
-                if (!isOwner && !isAdmin && !isEnrolled)
+                if (!isOwner && !isAdmin && !isTeacher && !isEnrolled)
                 {
                     return (course, Forbid());
                 }
@@ -163,7 +164,7 @@ namespace CoursesAPI.Controllers
 
         
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         [DisableRequestSizeLimit]
         public async Task<ActionResult<LessonViewModelDto>> CreateLesson(int courseId, LessonCreateModelDto createModel)
         {
@@ -259,7 +260,7 @@ namespace CoursesAPI.Controllers
         
 
         [HttpPut("{lessonId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> UpdateLesson(int courseId, int lessonId, LessonUpdateModelDto updateModel)
         {
@@ -375,7 +376,7 @@ namespace CoursesAPI.Controllers
         }
 
         [HttpDelete("{lessonId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = Roles.AdminOrTeacher)]
         public async Task<IActionResult> DeleteLesson(int courseId, int lessonId)
         {
             var accessCheck = await CheckCourseAccessAsync(courseId, requireOwnerOrAdmin: true);

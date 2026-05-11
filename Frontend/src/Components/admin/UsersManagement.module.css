@@ -1,0 +1,265 @@
+.pageTitle {
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    flex: 1;
+    min-width: 240px;
+    padding: 10px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-family: 'Inter', sans-serif;
+}
+.searchInput:focus {
+    outline: 0;
+    border-color: #8A2BE2;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.15);
+}
+
+.roleSelect {
+    padding: 10px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.95em;
+    color: #2d3748;
+    cursor: pointer;
+}
+.roleSelect:focus {
+    outline: 0;
+    border-color: #8A2BE2;
+}
+
+.primaryButton {
+    padding: 10px 18px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.20);
+    font-family: 'Inter', sans-serif;
+}
+.primaryButton:hover:not(:disabled) {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+.primaryButton:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.tableWrapper {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter', sans-serif;
+}
+
+.table th {
+    text-align: left;
+    padding: 14px 18px;
+    background: #f8faff;
+    color: #3A0068;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid #eef2ff;
+}
+
+.table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #2d3748;
+    font-size: 0.95em;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background: #fafbff;
+}
+
+.subtle { color: #777; font-size: 0.9em; }
+
+.roleBadge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.roleAdmin { background: #fce4ec; color: #c2185b; }
+.roleTeacher { background: #ede7f6; color: #6c2eb7; }
+.roleUser { background: #e1f5fe; color: #0277bd; }
+
+.blockedTag {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 0.7em;
+    padding: 2px 8px;
+    background: #ffebee;
+    color: #c62828;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.actionButtons {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.smallButton {
+    padding: 6px 12px;
+    background: #eef2ff;
+    color: #3A0068;
+    border: 1px solid #e0e7ff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.2s;
+}
+.smallButton:hover {
+    background: #e0e7ff;
+}
+
+.dangerButton {
+    background: #ffebee;
+    color: #c62828;
+    border-color: #ffcdd2;
+}
+.dangerButton:hover {
+    background: #ffcdd2;
+}
+.primaryButton.dangerButton {
+    background: linear-gradient(90deg, #d32f2f 0%, #b71c1c 100%);
+    color: white;
+    border: none;
+}
+
+.empty {
+    text-align: center;
+    padding: 30px 0;
+    color: #888;
+    font-style: italic;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(58, 0, 104, 0.45);
+    display: grid;
+    place-items: center;
+    z-index: 1100;
+    padding: 16px;
+}
+
+.dialog {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.dialog h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    font-size: 1.4em;
+    margin: 0 0 12px 0;
+}
+
+.dialogText {
+    color: #4a5568;
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+}
+
+.roleButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.fieldLabel {
+    display: block;
+    font-size: 0.85em;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-family: 'Inter', sans-serif;
+    color: #2d3748;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 16px;
+}
+.textarea:focus {
+    outline: 0;
+    border-color: #8A2BE2;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.15);
+}
+
+.dialogActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancelButton {
+    padding: 10px 18px;
+    background: #f3f4f6;
+    color: #4a5568;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+.cancelButton:hover {
+    background: #e5e7eb;
+}

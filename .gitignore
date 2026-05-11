@@ -1,0 +1,30 @@
+# Secrets — never commit
+.env
+*.env.local
+
+# .NET build output
+**/bin/
+**/obj/
+
+# IDE
+.vs/
+.idea/
+*.user
+*.suo
+
+# Node
+node_modules/
+.cache/
+
+# Vite build output
+**/dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# ASP.NET Data Protection keys (per-container ephemeral)
+.aspnet/

@@ -1,0 +1,63 @@
+.pageTitle {
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.widgetCard {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.widgetHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #eef2ff;
+    padding-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.widgetTitle {
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+}
+
+.select {
+    padding: 8px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.9em;
+    color: #2d3748;
+    cursor: pointer;
+}
+.select:focus {
+    outline: 0;
+    border-color: #8A2BE2;
+}
+
+.chartsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .chartsRow { grid-template-columns: 1fr; }
+}

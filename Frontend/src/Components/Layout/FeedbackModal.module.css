@@ -1,0 +1,154 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(58, 0, 104, 0.45);
+    display: grid;
+    place-items: center;
+    z-index: 1100;
+    padding: 16px;
+}
+
+.dialog {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    font-family: 'Inter', sans-serif;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: #888;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.closeBtn:hover {
+    background: #f3f4f6;
+    color: #3A0068;
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.intro {
+    color: #4a5568;
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+.label {
+    display: block;
+    font-size: 0.85em;
+    color: #555;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.input,
+.textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-family: 'Inter', sans-serif;
+    color: #2d3748;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+.input:focus,
+.textarea:focus {
+    outline: 0;
+    border-color: #8A2BE2;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.15);
+}
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+    margin-bottom: 4px;
+}
+
+.counter {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.primaryButton {
+    padding: 10px 22px;
+    background: linear-gradient(90deg, #8A2BE2 0%, #4B0082 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.20);
+}
+.primaryButton:hover:not(:disabled) {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+.primaryButton:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    padding: 10px 22px;
+    background: #f3f4f6;
+    color: #4a5568;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+.cancelButton:hover {
+    background: #e5e7eb;
+}
+
+.success {
+    text-align: center;
+    padding: 20px 0;
+}
+.success h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #3A0068;
+    font-size: 1.4em;
+    margin: 0 0 10px 0;
+}
+.success p {
+    color: #555;
+    font-size: 0.95em;
+    margin: 0 0 20px 0;
+}

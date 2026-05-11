@@ -49,6 +49,7 @@ public class AccountController : ControllerBase
 
         var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
+        if (result.IsLockedOut) return StatusCode(403, "Аккаунт заблокирован. Свяжитесь с администратором.");
         if (!result.Succeeded) return Unauthorized("Password is not correct");
 
         return Ok(
@@ -81,8 +82,8 @@ public class AccountController : ControllerBase
             if (!createUser.Succeeded)
                 return BadRequest(createUser.Errors.Select(e => e.Description));
 
-            var roleResult = await _userManager.AddToRoleAsync(user, "Admin");
-        
+            var roleResult = await _userManager.AddToRoleAsync(user, Roles.Teacher);
+
             if (!roleResult.Succeeded)
                 return BadRequest(roleResult.Errors.Select(e => e.Description));
 
@@ -98,7 +99,7 @@ public class AccountController : ControllerBase
             return StatusCode(500, new { Error = e.Message });
         }
     }
-    
+
     [HttpPost("telegramAuth")]
     public async Task<IActionResult> LoginWithTelegram([FromBody] string initData)
     {
@@ -181,7 +182,7 @@ public class AccountController : ControllerBase
             if (!result.Succeeded)
                 return BadRequest(result.Errors.Select(e => e.Description));
             
-            var roleResult = await _userManager.AddToRoleAsync(user, "User");
+            var roleResult = await _userManager.AddToRoleAsync(user, Roles.User);
         
             if (!roleResult.Succeeded)
                 return BadRequest(roleResult.Errors.Select(e => e.Description));

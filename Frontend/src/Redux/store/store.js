@@ -5,6 +5,9 @@ import { coursesGetApi } from '../api/coursesApi';
 import {testApi} from "../api/testApi.js";
 import {studentsApi} from "../api/studentApi.js";
 import {lessonApi} from "../api/lessonApi.js";
+import { adminApi } from '../api/adminApi.js';
+import { feedbackApi } from '../api/feedbackApi.js';
+import { notificationsApi } from '../api/notificationsApi.js';
 
 export const store = configureStore({
     reducer: {
@@ -14,6 +17,9 @@ export const store = configureStore({
         [testApi.reducerPath]: testApi.reducer,
         [studentsApi.reducerPath]: studentsApi.reducer,
         [lessonApi.reducerPath]: lessonApi.reducer,
+        [adminApi.reducerPath]: adminApi.reducer,
+        [feedbackApi.reducerPath]: feedbackApi.reducer,
+        [notificationsApi.reducerPath]: notificationsApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
@@ -22,4 +28,7 @@ export const store = configureStore({
             .concat(testApi.middleware)
             .concat(studentsApi.middleware)
             .concat(lessonApi.middleware)
+            .concat(adminApi.middleware)
+            .concat(feedbackApi.middleware)
+            .concat(notificationsApi.middleware)
 });
