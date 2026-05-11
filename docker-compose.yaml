@@ -34,6 +34,13 @@ services:
       DB_USER: ${POSTGRES_USER}
       DB_NAME: ${POSTGRES_DB}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
+    extra_hosts:
+      # Lets the container resolve our own public domains back to the host gateway
+      # so S3 traffic to dev.mocki.ru (MinIO) and mocki.ru stays on the loopback path
+      # instead of going out to the internet and back.
+      - "dev.mocki.ru:host-gateway"
+      - "mocki.ru:host-gateway"
+      - "host.docker.internal:host-gateway"
     depends_on:
       postgres:
         condition: service_healthy

@@ -1,4 +1,5 @@
 using CoursesAPI.Data;
+using CoursesAPI.Interfaces;
 using CoursesAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,9 @@ public static class DataSeeder
 
         var db = sp.GetRequiredService<ApplicationDbContext>();
         await db.Database.MigrateAsync();
+
+        var s3 = sp.GetRequiredService<IS3Interface>();
+        await s3.EnsureBucketAsync();
 
         var roleManager = sp.GetRequiredService<RoleManager<IdentityRole>>();
         foreach (var role in new[] { Roles.Admin, Roles.Teacher, Roles.User })
