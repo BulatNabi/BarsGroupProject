@@ -13,6 +13,8 @@ import ProfilePage from "./Components/Layout/ProfilePage.jsx";
 import CoursesGrid from "./Components/Layout/CoursesGrid.jsx";
 import StudentCoursesGrid from "./Components/Layout/StudentCoursesGrid.jsx";
 import { useTelegramAuthMutation } from "./Redux/api/authApi.js";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "./Redux/slices/authSlice.js";
 import TestThemeInputPage from "./Components/Quiz/TestThemeInputPage.jsx";
 import CourseDetail from "./Components/teacher/Courses/CourseDetail/CourseDetail.jsx";
 import AdminLayout from "./Components/admin/AdminLayout.jsx";
@@ -59,6 +61,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
 
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const [telegramAuth, {
         isLoading: isAuthLoading,
@@ -97,11 +100,18 @@ function App() {
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userRole', role);
             localStorage.setItem('token', authData.token);
+            if (authData.username) {
+                localStorage.setItem('username', JSON.stringify(authData.username));
+            }
+            // Populate Redux so RTK Query attaches the Bearer token to subsequent requests.
+            // Without this the same-session Telegram-auth flow leaves auth.token = null
+            // and every authenticated endpoint (tests/getquiz etc.) returns 401.
+            dispatch(setCredentials({ token: authData.token, user: authData.username }));
             setIsLoggedIn(true);
             setUserRole(role);
             setIsLoading(false);
         }
-    }, [isAuthSuccess, authData]);
+    }, [isAuthSuccess, authData, dispatch]);
 
     useEffect(() => {
         if (isAuthError) setIsLoading(false);
