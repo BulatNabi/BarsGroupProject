@@ -276,7 +276,7 @@ public class AdminController : ControllerBase
         var avg = await _context.CourseProgresses.AnyAsync()
             ? await _context.CourseProgresses.AverageAsync(cp => cp.CompletionPercentage)
             : 0;
-        var completed = await _context.CourseProgresses.CountAsync(cp => cp.CompletionPercentage >= 0.9);
+        var completed = await _context.CourseProgresses.CountAsync(cp => cp.CompletionPercentage >= 90);
 
         var topCourses = await _context.CourseProgresses
             .Include(cp => cp.Course)
@@ -382,7 +382,7 @@ public class AdminController : ControllerBase
                 break;
             case "completions":
                 raw = await _context.CourseProgresses
-                    .Where(cp => cp.StartDate != null && cp.StartDate >= sinceUtc && cp.CompletionPercentage >= 0.9)
+                    .Where(cp => cp.StartDate != null && cp.StartDate >= sinceUtc && cp.CompletionPercentage >= 90)
                     .Select(cp => cp.StartDate!.Value)
                     .ToListAsync();
                 break;
@@ -456,7 +456,7 @@ public class AdminController : ControllerBase
             coursesSheet.Cells[rowC, 3].Value = c.Lessons?.Count ?? 0;
             coursesSheet.Cells[rowC, 4].Value = enrollmentsByCourse.TryGetValue(c.Id, out var e) ? e.Count : 0;
             coursesSheet.Cells[rowC, 5].Value = enrollmentsByCourse.TryGetValue(c.Id, out var e2)
-                ? Math.Round(e2.Avg * 100, 1) + "%" : "0%";
+                ? Math.Round(e2.Avg, 1) + "%" : "0%";
             coursesSheet.Cells[rowC, 6].Value = c.CreateDate.ToString("yyyy-MM-dd");
             coursesSheet.Cells[rowC, 7].Value = c.EndDate.ToString("yyyy-MM-dd");
             rowC++;
@@ -477,7 +477,7 @@ public class AdminController : ControllerBase
         {
             enrollSheet.Cells[rowE, 1].Value = p.User?.UserName;
             enrollSheet.Cells[rowE, 2].Value = p.Course?.Title;
-            enrollSheet.Cells[rowE, 3].Value = Math.Round(p.CompletionPercentage * 100, 1);
+            enrollSheet.Cells[rowE, 3].Value = Math.Round(p.CompletionPercentage, 1);
             enrollSheet.Cells[rowE, 4].Value = p.StartDate?.ToString("yyyy-MM-dd");
             rowE++;
         }

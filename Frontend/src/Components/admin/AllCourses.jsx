@@ -37,7 +37,7 @@ const AllCourses = () => {
             ) : (
                 <div className={styles.grid}>
                     {filtered.map(c => {
-                        const completion = Math.round((c.averageCompletion ?? 0) * 100);
+                        const completion = Math.round(c.averageCompletion ?? 0);
                         return (
                             <div key={c.id} className={styles.card}>
                                 <div className={styles.preview}>

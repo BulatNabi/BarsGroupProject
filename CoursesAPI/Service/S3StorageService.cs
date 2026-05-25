@@ -62,7 +62,13 @@ public class S3Service : IS3Interface
         Console.WriteLine(_bucket);
         if (file == null) return String.Empty;
         
-        var key = $"{path}/{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+        var originalName = Path.GetFileNameWithoutExtension(file.FileName)
+            ?.Replace("/", "_").Replace("\\", "_").Replace("..", "_").Trim();
+        var guid = Guid.NewGuid();
+        var ext = Path.GetExtension(file.FileName);
+        var key = string.IsNullOrWhiteSpace(originalName)
+            ? $"{path}/{guid}{ext}"
+            : $"{path}/{guid}__{originalName}{ext}";
 
         await using var stream = file.OpenReadStream();
         var contentType = file.ContentType;

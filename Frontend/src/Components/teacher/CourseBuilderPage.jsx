@@ -135,6 +135,11 @@ const CourseBuilderPage = () => {
                     return;
                 }
 
+                const titledName = (title, file) => {
+                    const ext = file.name.split('.').pop();
+                    return title.trim() ? `${title.trim()}.${ext}` : file.name;
+                };
+
                 switch (item.type) {
                     case 'text':
                         if (typeof item.content === 'string' && item.content.trim()) {
@@ -145,7 +150,7 @@ const CourseBuilderPage = () => {
                         break;
                     case 'photo':
                         if (item.content instanceof File) {
-                            lessonFormData.append('Photos', item.content, item.content.name);
+                            lessonFormData.append('Photos', item.content, titledName(item.title, item.content));
                             hasContent = true;
                         } else {
                             console.warn(`Элемент контента типа 'photo' не содержит File:`, item.content);
@@ -156,7 +161,7 @@ const CourseBuilderPage = () => {
                             const fileName = item.content.name;
                             const fileExtension = fileName.split('.').pop().toLowerCase();
                             if (['pdf', 'doc', 'docx', 'ppt', 'pptx'].includes(fileExtension)) {
-                                lessonFormData.append('Lectures', item.content, item.content.name);
+                                lessonFormData.append('Lectures', item.content, titledName(item.title, item.content));
                                 hasContent = true;
                             } else {
                                 console.warn(`Элемент контента типа 'book' имеет неподдерживаемое расширение файла: ${fileExtension}`);
@@ -167,7 +172,7 @@ const CourseBuilderPage = () => {
                         break;
                     case 'video':
                         if (item.content instanceof File) {
-                            lessonFormData.append('Videos', item.content, item.content.name);
+                            lessonFormData.append('Videos', item.content, titledName(item.title, item.content));
                             hasContent = true;
                         } else {
                             console.warn(`Элемент контента типа 'video' не содержит File:`, item.content);
@@ -175,7 +180,7 @@ const CourseBuilderPage = () => {
                         break;
                     case 'audio':
                         if (item.content instanceof File) {
-                            lessonFormData.append('Audios', item.content, item.content.name);
+                            lessonFormData.append('Audios', item.content, titledName(item.title, item.content));
                             hasContent = true;
                         } else {
                             console.warn(`Элемент контента типа 'audio' не содержит File:`, item.content);

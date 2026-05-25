@@ -45,7 +45,7 @@ const StatisticsPage = () => {
             </div>
 
             <div className={styles.chartSection}>
-                <h3 className={styles.sectionTitle}>📈 Процент прохождения / Статистика по 3 курсам</h3>
+                <h3 className={styles.sectionTitle}>📈 Процент прохождения / Статистика по {chartData.length} курсам</h3>
                 {platformLoading ? (
                     <p>Загрузка данных для графика...</p>
                 ) : chartData.length > 0 ? (
@@ -81,11 +81,15 @@ const StatisticsPage = () => {
             <div>
                 <h3>Список курсов</h3>
                 <ul className={styles.studentsList}>
-                    {coursesData.map((course, index) => (
-                        <li key={index} className={styles.studentItem} onClick={() => { handleCourseClick(course.id) }}>
-                            {index + 1}. {course.title}
-                        </li>
-                    ))}
+                    {Array.isArray(coursesData) && coursesData.length > 0 ? (
+                        coursesData.map((course, index) => (
+                            <li key={index} className={styles.studentItem} onClick={() => { handleCourseClick(course.id) }}>
+                                {index + 1}. {course.title}
+                            </li>
+                        ))
+                    ) : !isLoading && (
+                        <p>Нет доступных курсов.</p>
+                    )}
                 </ul>
             </div>
         </div>

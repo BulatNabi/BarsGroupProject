@@ -260,7 +260,7 @@ public class AccountController : ControllerBase
             ProfilePhotoKey = user.ProfilePhotoKey != null ? _s3.GetFileUrl(user.ProfilePhotoKey) : "",
             Telegramusername = user.TelegramUsername,
             BestCourse = bestCourse,
-            EndedCourses = userCourseProgresses.Where(u => u.CompletionPercentage > 0.9f).ToList().Count,
+            EndedCourses = userCourseProgresses.Where(u => u.CompletionPercentage > 90).ToList().Count,
             CourseProgresses = userCourseProgresses
         };
     }

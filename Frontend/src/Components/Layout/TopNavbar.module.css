@@ -87,6 +87,10 @@
     cursor: pointer;
     transition: color 0.2s ease;
     position: relative;
+    background: none;
+    border: none;
+    line-height: inherit;
+    text-align: left;
 }
 
 .navLinkItem:hover {

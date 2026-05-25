@@ -11,10 +11,13 @@ const RenderFileItem = ({fileKey, index, sectionName}) => {
     if (fileType === 'image') {
         content = <img src={fileKey} alt={fileName} className={styles.embeddedImage}/>;
     } else if (fileType === 'audio') {
-        content = (
-            <audio controls src={fileKey}>
-                Ваш браузер не поддерживает аудио.
-            </audio>
+        return (
+            <li key={index} className={styles.audioItem}>
+                <p className={styles.audioFileName}>{fileName}</p>
+                <audio controls src={fileKey} className={styles.audioPlayerFull}>
+                    Ваш браузер не поддерживает аудио.
+                </audio>
+            </li>
         );
     } else if (fileType === 'video_file') {
         content = (

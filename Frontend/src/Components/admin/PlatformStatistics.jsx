@@ -41,7 +41,7 @@ const PlatformStatistics = () => {
     const topCourses = courseStats.slice(0, 10).map(c => ({
         name: (c.title ?? c.Title ?? '').slice(0, 18),
         enrollments: c.enrollments ?? c.Enrollments ?? 0,
-        completion: Math.round(((c.averageCompletion ?? c.AverageCompletion) ?? 0) * 100),
+        completion: Math.round((c.averageCompletion ?? c.AverageCompletion) ?? 0),
     }));
 
     return (

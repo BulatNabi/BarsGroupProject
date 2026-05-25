@@ -1,14 +1,21 @@
 export const getFileNameFromKey = (key, defaultName) => {
     if (!key) return defaultName;
     try {
-        const url = new URL(key);
-        const fileName = url.pathname.split('/').pop();
-        const decodedFileName = decodeURIComponent(fileName?.split('?')[0] || '');
-        return decodedFileName || defaultName;
-    } catch (e) {
-        const fileName = key.split('/').pop();
-        const decodedFileName = decodeURIComponent(fileName?.split('?')[0] || '');
-        return decodedFileName || defaultName;
+        let raw;
+        try {
+            const url = new URL(key);
+            raw = url.pathname.split('/').pop();
+        } catch {
+            raw = key.split('/').pop();
+        }
+        const decoded = decodeURIComponent(raw?.split('?')[0] || '');
+        if (decoded.includes('__')) {
+            const afterUuid = decoded.split('__').slice(1).join('__');
+            if (afterUuid) return afterUuid;
+        }
+        return decoded || defaultName;
+    } catch {
+        return defaultName;
     }
 };
 

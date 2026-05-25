@@ -52,7 +52,7 @@ const AdminDashboard = () => {
                 <div className={styles.statCard}>
                     <span className={styles.statLabel}>Средний прогресс</span>
                     <span className={styles.statValue}>
-                        {isLoading ? '…' : Math.round((stat('averageCompletion', 'AverageCompletion')) * 100) + '%'}
+                        {isLoading ? '…' : Math.round(stat('averageCompletion', 'AverageCompletion')) + '%'}
                     </span>
                 </div>
             </div>

@@ -76,7 +76,7 @@ namespace CoursesAPI.Controllers
             var userCount = _userManager.Users.Count(x => x.TelegramUsername != null);
             var coursesCount = _courseRepository.GetCoursesCount();
             var courseProgresses = await _courseProgressRepository.GetCourseProgressesAsync();
-            var completedCourses = courseProgresses.Count(c => c.CompletionPercentage > 0.9);
+            var completedCourses = courseProgresses.Count(c => c.CompletionPercentage > 90);
             Dictionary<string, double> threeCourses = new Dictionary<string, double>(); 
             if (courseProgresses.Any())
             {
@@ -92,10 +92,17 @@ namespace CoursesAPI.Controllers
                         .Take(3);
                 threeCourses = topCourseProgresses.ToDictionary(item => item.CourseName, item => item.MaxPercentage);
             }
-            var bestUsers = new List<string>();
-            var bestProgress = courseProgresses.OrderByDescending(x => x.CompletionPercentage).Take(3);
-            foreach (var progress in bestProgress)
-                bestUsers.Add(progress.User.UserName);
+            var bestUsers = courseProgresses
+                .GroupBy(cp => cp.UserId)
+                .Select(g => new
+                {
+                    Username = g.First().User.UserName,
+                    MaxCompletion = g.Max(cp => cp.CompletionPercentage)
+                })
+                .OrderByDescending(x => x.MaxCompletion)
+                .Take(3)
+                .Select(x => x.Username)
+                .ToList();
             
             return new PlatformViewModelDto
             {
@@ -530,6 +537,7 @@ public async Task<ActionResult<string>> DownloadUsersProgressExcel(int courseId)
                 Course = course,
                 CompletionPercentage = 0,
                 CourseId = course.Id,
+                StartDate = DateTime.UtcNow,
                 LessonProgresses = new List<LessonProgress>()
             };
 

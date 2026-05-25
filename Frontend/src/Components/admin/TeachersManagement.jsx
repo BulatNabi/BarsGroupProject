@@ -16,7 +16,7 @@ const TeachersManagement = () => {
             ) : (
                 <div className={styles.grid}>
                     {teachers.map(t => {
-                        const completion = Math.round((t.averageStudentCompletion ?? 0) * 100);
+                        const completion = Math.round(t.averageStudentCompletion ?? 0);
                         return (
                             <div key={t.id} className={styles.card}>
                                 <div className={styles.cardHeader}>

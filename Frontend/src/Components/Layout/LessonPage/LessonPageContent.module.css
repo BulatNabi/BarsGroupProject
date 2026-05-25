@@ -305,9 +305,11 @@ body {
 
 .audioList {
     list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+    margin: 0;
 }
 
 .fileItem {
@@ -338,6 +340,25 @@ body {
     overflow: hidden;
     background-color: #f0f4ff;
     flex-shrink: 0;
+}
+
+.audioItem {
+    list-style: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.audioFileName {
+    margin: 0 0 6px 0;
+    font-size: 0.85em;
+    font-weight: 500;
+    color: #555;
+    word-break: break-word;
+}
+
+.audioPlayerFull {
+    width: 100%;
+    display: block;
 }
 
 .embeddedImage,
@@ -540,11 +561,6 @@ body {
         gap: 15px;
     }
 
-    .audioList {
-        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-        gap: 15px;
-    }
-
     .filePreview {
         height: 120px;
     }
@@ -664,11 +680,6 @@ body {
 
     .fileList {
         grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .audioList {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 10px;
     }
 
